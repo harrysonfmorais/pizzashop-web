@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Utensils } from 'lucide-react'
 
-import { getMonthCanceledOrdersAmount } from '@/api/get-month-canceled-orders-amount'
+import { getMountOrdersAmount } from '@/api/get-month-orders-amount'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 import { MetricCardSkeleton } from './metric-card-skeleton'
@@ -9,7 +9,7 @@ import { MetricCardSkeleton } from './metric-card-skeleton'
 export function MonthOrdersAmountCard() {
   const { data: monthOrdersAmount } = useQuery({
     queryKey: ['metrics', 'month-orders-amount'],
-    queryFn: getMonthCanceledOrdersAmount,
+    queryFn: getMountOrdersAmount,
   })
 
   return (
@@ -27,7 +27,7 @@ export function MonthOrdersAmountCard() {
             <p className="text-xs text-muted-foreground">
               {monthOrdersAmount.diffFromLastMonth >= 0 ? (
                 <>
-                  <span className="text-emerald-500 dark:text-rose-400">
+                  <span className="text-emerald-500 dark:text-emerald-400">
                     +{monthOrdersAmount.diffFromLastMonth}%
                   </span>{' '}
                   em relação ao mês passado
